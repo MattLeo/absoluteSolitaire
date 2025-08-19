@@ -6,7 +6,10 @@ data class GameState(
     val foundations: Array<MutableList<Card>> = Array(4) { mutableListOf() },
     val tableau: Array<MutableList<Card>> = Array(7) { mutableListOf() },
     var score: Int = 0,
-    var moves: Int = 0
+    var moves: Int = 0,
+    var isCompleted: Boolean = false,
+    var completionTime: Long? = null,
+    var startTime: Long = System.currentTimeMillis()
 ) {
     fun isGameWon(): Boolean {
         return foundations.all { it.size == 13 }
@@ -47,4 +50,5 @@ data class GameState(
         result = 31 * result + tableau.contentHashCode()
         return result
     }
+
 }
